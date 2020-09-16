@@ -95,7 +95,5 @@ public class CustomArrayList {
         myNewArray.shift();
         myNewArray.shift();
         myNewArray.show();
-
-
     }
 }
