@@ -25,8 +25,7 @@ class LinkedList {
     public void insertFirst(int data){
         Node node = new Node(data);
         if (this.head != null) {
-            Node oldNodes = this.head;
-            node.next = oldNodes;
+            node.next = this.head;
         }
         this.head = node;
         this.totalNodes++;
@@ -35,9 +34,12 @@ class LinkedList {
         int startPosition = 1;
         Node node = new Node(data);
         Node currentNode = this.head;
+        if(position ==1){
+           this.insertFirst(data);
+           return;
+        }
         while (currentNode.next != null){
             if(startPosition == (position-1)){
-                System.out.println("position is " + startPosition + " and its data = "+currentNode.data);
                 Node restingNodes = currentNode.next;
                 currentNode.next = node;
                 node.next = restingNodes;
@@ -49,6 +51,10 @@ class LinkedList {
         this.totalNodes++;
     }
     public void view(){
+        if(this.isEmpty()) {
+            System.out.println("LinkedListNodeNotFound:Total Nodes= " + this.count());
+            return;
+        }
         Node currentNode = this.head;
         while (currentNode.next != null){
             System.out.println(currentNode.data);
@@ -57,21 +63,44 @@ class LinkedList {
         System.out.println(currentNode.data);
 
     }
-    public long countTotalNodes(){
+    public long totalNodes(){
         return this.totalNodes;
+    }
+    public long count(){
+        long totalNodes = 0;
+        if(this.isEmpty()) {
+            return totalNodes;
+        }
+        if(this.head.next != null){
+            Node currentNode = this.head;
+            while (currentNode.next != null){
+                totalNodes++;
+                currentNode = currentNode.next;
+            }
+        }
+        return ++totalNodes;
+
+    }
+    public boolean isEmpty(){
+        if(this.head == null){
+            return true;
+        }
+        return false;
     }
 }
 
 public class LinkedListExecutor {
     public static void main(String[] args) {
         LinkedList liLi1 = new LinkedList();
-        liLi1.insert(11);
-        liLi1.insert(12);
-        liLi1.insert(13);
-        liLi1.insertFirst(10);
-        liLi1.insertAt(14, 2);
-        liLi1.view();
-        System.out.println("Total Nodes: "+liLi1.countTotalNodes());
+//        Example Data
+//        liLi1.insert(11);
+//        liLi1.insert(12);
+//        liLi1.insert(13);
+//        liLi1.insertFirst(10);
+//        liLi1.insertAt(14, 2);
+//        liLi1.insertAt(9, 1);
+//        liLi1.view();
+        System.out.println(liLi1.isEmpty());
 
     }
 }
