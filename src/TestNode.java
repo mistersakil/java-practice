@@ -12,8 +12,9 @@ interface TestNode {
 //    public boolean delete(long index); // single node at given index
 //    public boolean delete(); // delete all nodes
 //    public boolean isEmpty(); // check is linked list empty
-
-
+//    boolean contains(String data) // check given data available or not
+//    boolean update(int data, long index) // to update given index node
+//    boolean update(int data, boolean lastIndex) // to update last index node
 
 //    boolean addFirst(T) ok
 //    boolean addLast(T) ok
@@ -29,7 +30,7 @@ interface TestNode {
 //    Node<T> updateLast(T)
 //    Node<T> update(T, index)
 //    Node<T> updateAll(T)
-//    boolean contains(T)
+//    boolean contains(T) ok
 //    T[] toArray()
 //    Node<T> fromArray(T[])
 

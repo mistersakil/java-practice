@@ -98,6 +98,10 @@ class LinkedList {
      * @since           2020-09-24
      */
     public boolean delete(boolean lastIndex){
+        if(lastIndex == false){
+            this.notFoundException("TRUE");
+            return false;
+        }
         long totalLength = this.count();
         long currentNodePosition = 1;
         Node currentNode = this.head;
@@ -268,44 +272,169 @@ class LinkedList {
     public boolean isEmpty(){
         return this.head == null ? true : false;
     }
+    /**
+     * To show available exception in private mode
+     * Call notFoundException method.
+     * @author         Sakil Jomadder
+     * @return         Void (Message)
+     * @since          2020-09-23
+     */
     private void notFoundException(String errorType){
         String message = "NotFoundException";
-        String type = "";
         switch (errorType){
             case "INDEX":
-                type = "Index";
+                message = "IndexNotFoundException";
                 break;
             case "LINKED_LIST":
-                type = "LinkedListNode";
+                message = "LinkedListNodeNotFoundException";
                 break;
+            case "TRUE":
+                message = "MustBeTrueException";
+                break;
+            case "UPDATE_FAILED":
+                message = "IndexNotFoundException:UpdateFailed";
+                break;
+
             default:
         }
-        System.out.println(type+message);
+        System.out.println(message);
     }
-}
+
+    /**
+     * To check given data is available or not.
+     * Call contains method.
+     * @author         Sakil Jomadder
+     * @return         Boolean true(on success) | false(on failure)
+     * @since          2020-09-25
+     */
+
+    boolean contains(int data){
+        long totalLength = this.count();
+        Node currentNode = this.head;
+        long currentIndex = 1;
+        while (currentNode.next != null){
+            if(currentNode.data == data)
+                return true;
+            currentIndex++;
+            currentNode = currentNode.next;
+        }
+        if (totalLength == currentIndex){
+            if(currentNode.data == data)
+                return true;
+        }
+        return false;
+    }
+    /**
+     * To update data in specific index.
+     * Call update(int data, long index) method.
+     * @author         Sakil Jomadder
+     * @return         Boolean true(on success) | false(on failure)
+     * @since          2020-09-25
+     * @param data     Data to update
+     * @param index    Which index position to update
+     */
+
+    boolean update(int data, long index){
+        long totalLength = this.count();
+        if (index < 1 || index > totalLength){
+            this.notFoundException("UPDATE_FAILED");
+            return false;
+        }
+        Node currentNode = this.head;
+        long currentIndex = 1;
+        while (currentNode.next != null){
+            if(currentIndex == index) {
+                currentNode.data = data;
+                return true;
+            }
+            currentIndex++;
+            currentNode = currentNode.next;
+        }
+        if (totalLength == currentIndex){
+            if(currentIndex == index) {
+                currentNode.data = data;
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * To update data at last index.
+     * Call update(int data, boolean lastIndex) method.
+     * @author         Sakil Jomadder
+     * @return         Boolean true(on success) | false(on failure)
+     * @since          2020-09-25
+     * @param data     Data to update
+     * @param lastIndex    Which index position to update
+     */
+    boolean update(int data, boolean lastIndex){
+        if(lastIndex == false) {
+            this.notFoundException("TRUE");
+            return false;
+        }
+        long totalLength = this.count();
+        Node currentNode = this.head;
+        long currentIndex = 1;
+        while (currentNode.next != null){
+            currentIndex++;
+            currentNode = currentNode.next;
+        }
+        if (totalLength == currentIndex)
+            currentNode.data = data;
+        return true;
+
+    }
+    /**
+     * To update data into all nodes.
+     * Call update(int data) method.
+     * @author          Sakil Jomadder
+     * @return          Boolean true(on success) | false(on failure)
+     * @since           2020-09-25
+     * @param data      Data to update
+     */
+    boolean update(int data){
+        long totalLength = this.count();
+        Node currentNode = this.head;
+        long currentIndex = 1;
+        while (currentNode.next != null){
+            currentNode.data = data;
+            currentNode = currentNode.next;
+            currentIndex++;
+        }
+        if (totalLength == currentIndex)
+            currentNode.data = data;
+        return true;
+
+    }
+
+
+} // End of the Linked List Class
 
 public class LinkedListExecutor {
     public static void main(String[] args) {
-        LinkedList liLi1 = new LinkedList();
+        LinkedList linkedList1 = new LinkedList();
 //        Example Data
-//        liLi1.push(11);
-        liLi1.push(10);
-        liLi1.push(9,1);
-//        liLi1.push(7, 1);
-//        liLi1.push(6,1);
-//        liLi1.push(8,3);
-//        liLi1.push(5,-1);
-//        liLi1.push(14);
-//        liLi1.push(15);
-//        liLi1.push(16);
-//        liLi1.get();
-//        liLi1.delete(1);
-//        liLi1.delete(false);
-        liLi1.get();
-//        liLi1.get(1);
-//        liLi1.get(3,5);
-
-        System.out.println("Total Nodes = "+liLi1.count());
+//        linkedList1.push(11);
+//        linkedList1.push(10);
+//        linkedList1.push(9,1);
+//        linkedList1.push(7, 1);
+//        linkedList1.push(6,1);
+//        linkedList1.push(8,3);
+//        linkedList1.push(5,-1);
+//        linkedList1.push(14);
+//        linkedList1.push(15);
+//        linkedList1.push(16);
+//        linkedList1.get();
+//        linkedList1.delete(1);
+//        linkedList1.delete(true);
+//        linkedList1.get();
+//        System.out.println(linkedList1.contains(90));
+//        linkedList1.get(1);
+//        linkedList1.get(3,5);
+//        linkedList1.update(11,true);
+//        linkedList1.update(13,-1);
+//        linkedList1.get();
+//        System.out.println("Total Nodes = "+linkedList1.count());
 
     }
 }
