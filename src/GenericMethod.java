@@ -9,7 +9,7 @@ public class GenericMethod {
             System.out.println(item);
         }
     }
-    public static <E> void genericType(E list[]){
+    public static <E> void  genericType(E list[]){
         for( E item: list){
             System.out.println(item);
         }

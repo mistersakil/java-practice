@@ -6,7 +6,7 @@ class Node {
     }
 
 }
-class LinkedList {
+class LinkedList implements LinkedListInterface{
     Node head;
     /**
      * To insert new linked list node.
@@ -308,7 +308,7 @@ class LinkedList {
      * @since          2020-09-25
      */
 
-    boolean contains(int data){
+    public boolean contains(int data){
         long totalLength = this.count();
         Node currentNode = this.head;
         long currentIndex = 1;
@@ -334,7 +334,7 @@ class LinkedList {
      * @param index    Which index position to update
      */
 
-    boolean update(int data, long index){
+    public boolean update(int data, long index){
         long totalLength = this.count();
         if (index < 1 || index > totalLength){
             this.notFoundException("UPDATE_FAILED");
@@ -367,7 +367,7 @@ class LinkedList {
      * @param data     Data to update
      * @param lastIndex    Which index position to update
      */
-    boolean update(int data, boolean lastIndex){
+    public boolean update(int data, boolean lastIndex){
         if(lastIndex == false) {
             this.notFoundException("TRUE");
             return false;
@@ -392,7 +392,7 @@ class LinkedList {
      * @since           2020-09-25
      * @param data      Data to update
      */
-    boolean update(int data){
+    public boolean update(int data){
         long totalLength = this.count();
         Node currentNode = this.head;
         long currentIndex = 1;
@@ -414,7 +414,7 @@ public class LinkedListExecutor {
     public static void main(String[] args) {
         LinkedList linkedList1 = new LinkedList();
 //        Example Data
-//        linkedList1.push(11);
+        linkedList1.push(11);
 //        linkedList1.push(10);
 //        linkedList1.push(9,1);
 //        linkedList1.push(7, 1);
@@ -433,7 +433,7 @@ public class LinkedListExecutor {
 //        linkedList1.get(3,5);
 //        linkedList1.update(11,true);
 //        linkedList1.update(13,-1);
-//        linkedList1.get();
+        linkedList1.get();
 //        System.out.println("Total Nodes = "+linkedList1.count());
 
     }
